@@ -18,4 +18,13 @@ router.delete("/", (req, res) => {
   res.send("Logged out");
 });
 
+router.get('/', (req, res) => {
+  const {userInfo} = req.session;
+  if(userInfo && userInfo.username){
+    res.json(userInfo);
+  }else {
+    res.status(401).json();
+  }
+})
+
 module.exports = router;
